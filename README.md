@@ -27,7 +27,7 @@ Using a local repository for development:
 ## Usage
 
 ```python
-from itanium_demangler import parse as demangle
+from cxx_demangler import parse as demangle
 
 ast = demangle("_ZN5boost6chrono24process_system_cpu_clock3nowEv")
 

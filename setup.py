@@ -2,7 +2,7 @@ import setuptools
 
 
 setuptools.setup(
-    name="itanium_demangler",
+    name="cxx_demangler",
     version="1.0",
     author="whitequark",
     author_email="whitequark@whitequark.org",
