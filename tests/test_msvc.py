@@ -1,6 +1,6 @@
 import unittest
 
-from cxx_demangler.msvc import parse, _operators, _builtin_types
+from cxx_demangler.msvc import parse
 
 
 class TestMsvcDemangler(unittest.TestCase):
@@ -15,19 +15,15 @@ class TestMsvcDemangler(unittest.TestCase):
         self.assertEqual(result, demangled)
 
     def test_name(self):
-        self.assertDemangles('', 'foo')
-        self.assertDemangles('', None)
-    #
-    # def test_ctor_dtor(self):
-    #     self.assertDemangles('_ZN3fooC1E', 'foo::{ctor}')
-    #     self.assertDemangles('_ZN3fooC2E', 'foo::{base ctor}')
-    #     self.assertDemangles('_ZN3fooC3E', 'foo::{allocating ctor}')
-    #     self.assertDemangles('_ZN3fooD0E', 'foo::{deleting dtor}')
-    #     self.assertDemangles('_ZN3fooD1E', 'foo::{dtor}')
-    #     self.assertDemangles('_ZN3fooD2E', 'foo::{base dtor}')
-    #     self.assertDemangles('_ZN3fooC1IcEEc', 'foo::{ctor}<char>(char)')
-    #     self.assertDemangles('_ZN3fooD1IcEEc', 'foo::{dtor}<char>(char)')
-    #
+        self.assertDemangles('?foo@@3HA', 'foo')
+        self.assertDemangles('?foo@', None)
+
+    def test_ctor_dtor(self):
+        self.assertDemangles('??0foo@@', 'foo::{ctor}')
+        self.assertDemangles('??1foo@@', 'foo::{dtor}')
+        # self.assertDemangles('_ZN3fooC1IcEEc', 'foo::{ctor}<char>(char)')
+        # self.assertDemangles('_ZN3fooD1IcEEc', 'foo::{dtor}<char>(char)')
+
     # def test_operator(self):
     #     for op in _operators:
     #         if _operators[op] in ['new', 'new[]', 'delete', 'delete[]']:
